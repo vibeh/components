@@ -1,6 +1,6 @@
 {
   "name": "vibe-components-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "CLI tool to add Vibe Components and Cursor rules to your project.",
   "main": "bin/vibe-components",
   "bin": {
