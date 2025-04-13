@@ -34,11 +34,23 @@ Running the `add` command will:
 
 2. Create a `.cursor/rules.json` file with component snippets for the Cursor IDE
 
+## Cursor Integration
+
+This package creates Cursor AI rules that help the [Cursor IDE](https://cursor.sh/) understand when and how to use each component. The rules include:
+
+- **Context-aware suggestions** - Cursor will suggest the right component based on what you're trying to build
+- **Best practices** - Guidelines for how to use each component effectively
+- **Usage examples** - Ready-to-use code snippets for each component
+
+To take advantage of these features, make sure you're using the [Cursor IDE](https://cursor.sh/) and have run `npx vibe-components-cli add` in your project.
+
 ## Components
 
 ### Vaul Drawer
 
 A performant and accessible bottom sheet component.
+
+**When to use:** Perfect for mobile interfaces, navigation menus, and contextual actions that shouldn't take the full screen.
 
 ```jsx
 import { Drawer } from 'vaul';
@@ -67,7 +79,9 @@ function MyComponent() {
 
 ### NumberFlow
 
-An animated number component.
+An animated number component with smooth transitions.
+
+**When to use:** For statistics, counters, financial data, scores, or metrics. Great for dashboards and real-time data displays.
 
 ```jsx
 import NumberFlow from '@number-flow/react';
@@ -81,7 +95,9 @@ function MyComponent() {
 
 ### Sonner Toast
 
-An opinionated toast component.
+An opinionated toast notification component.
+
+**When to use:** For displaying non-blocking notifications, success/error messages, and important updates without interrupting workflow.
 
 ```jsx
 import { Toaster, toast } from 'sonner';
@@ -95,6 +111,10 @@ function MyComponent() {
   );
 }
 ```
+
+## Contributing
+
+Contributions are welcome! Check out our [GitHub repository](https://github.com/vibeh/components).
 
 ## License
 
