@@ -2,27 +2,30 @@
 
 CLI tool to add Vibe Components and Cursor rules to your React project.
 
-## Installation
+## Installation & Usage
+
+There are two ways to use this tool:
+
+### Option 1: Install globally
 
 ```bash
+# Install globally
 npm install -g vibe-components-cli
-```
 
-Or use npx without installing:
-
-```bash
-npx vibe-components-cli add
-```
-
-## Usage
-
-Navigate to your React project and run:
-
-```bash
+# Then use from any project
 vibe-components add
 ```
 
-This will:
+### Option 2: Use with npx (no installation)
+
+```bash
+# Run directly with npx
+npx vibe-components-cli add
+```
+
+## What it does
+
+Running the `add` command will:
 
 1. Install the following npm packages:
    - [vaul](https://vaul.emilkowal.ski/) - A drawer component for React

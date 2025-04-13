@@ -6,8 +6,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 program
-  .version('0.1.0')
-  .description('CLI tool to add Vibe Components and Cursor rules to your project');
+  .version('0.1.2')
+  .description('CLI tool to add Vibe Components and Cursor rules to your project. Run using: npx vibe-components-cli add');
 
 program
   .command('add')
@@ -34,12 +34,14 @@ program
       // Create rules.json file with the updated content for the actual packages
       const rulesFile = path.join(cursorDir, 'rules.json');
       const rulesContent = {
-        "description": "Provides a set of curated React UI components.",
+        "description": "Provides a set of curated React UI components with guidelines on when and how to use them effectively.",
         "rules": [
           {
             "name": "Vaul Bottom Sheet",
-            "description": "A performant and accessible bottom sheet component.",
-            "keywords": ["bottom sheet", "modal", "slide up", "vaul"],
+            "description": "A performant and accessible bottom sheet component for mobile and responsive interfaces.",
+            "when_to_use": "Use Vaul when you need a bottom sheet or drawer that slides up from the bottom of the screen. Perfect for mobile interfaces, navigation menus, and contextual actions that shouldn't take the full screen.",
+            "best_practices": "Keep the content focused and not too tall. Include a visual indicator for dragging. Always provide a way to dismiss the drawer.",
+            "keywords": ["bottom sheet", "mobile menu", "slide up", "drawer", "modal", "vaul", "mobile UI", "sheet", "panel"],
             "componentName": "Drawer",
             "importStatement": "import { Drawer } from 'vaul';",
             "usageExample": "<Drawer.Root>\n  <Drawer.Trigger>\n    <button>Open Drawer</button>\n  </Drawer.Trigger>\n  <Drawer.Portal>\n    <Drawer.Overlay className=\"fixed inset-0 bg-black/40\" />\n    <Drawer.Content className=\"bg-white flex flex-col rounded-t-[10px] h-full mt-24 max-h-[85vh] fixed bottom-0 left-0 right-0\">\n      <div className=\"p-4 rounded-t-[10px] flex-1\">\n        <div className=\"mx-auto w-12 h-1.5 bg-gray-300 rounded-full mb-4\" />\n        <div className=\"max-w-md mx-auto\">\n          <h2>Drawer Content</h2>\n        </div>\n      </div>\n    </Drawer.Content>\n  </Drawer.Portal>\n</Drawer.Root>",
@@ -47,8 +49,10 @@ program
           },
           {
             "name": "NumberFlow Input",
-            "description": "An animated number component for React.",
-            "keywords": ["number input", "numerical input", "numberflow", "animation"],
+            "description": "An animated number component for React that provides smooth, visually pleasing transitions between numeric values.",
+            "when_to_use": "Use NumberFlow when displaying numbers that change frequently or need to be emphasized, such as statistics, counters, financial data, scores, or metrics. Particularly useful for dashboards, analytics, and real-time data visualization.",
+            "best_practices": "Focus on readability first. Don't overuse for static numbers. Consider using tabular-nums font-variant for consistent widths.",
+            "keywords": ["number input", "numerical display", "counter", "animated numbers", "statistics", "metrics", "numberflow", "animation", "numeric transition"],
             "componentName": "NumberFlow",
             "importStatement": "import NumberFlow from '@number-flow/react';",
             "usageExample": "<NumberFlow value={123} />",
@@ -56,8 +60,10 @@ program
           },
           {
             "name": "Sonner Toast",
-            "description": "An opinionated toast component for React.",
-            "keywords": ["toast", "notification", "alert", "sonner"],
+            "description": "An opinionated toast notification component for React that's minimal, customizable, and elegant.",
+            "when_to_use": "Use Sonner for displaying non-blocking notifications, success/error messages, or important updates that don't interrupt the user's workflow. Perfect for form submissions, action confirmations, system notifications, and status updates.",
+            "best_practices": "Keep toast messages brief and clear. Use appropriate toast types (success, error, etc.) for different messages. Don't overuse toasts for non-essential information.",
+            "keywords": ["toast", "notification", "alert", "message", "popup", "feedback", "sonner", "status update", "confirmation"],
             "componentName": "Toaster",
             "importStatement": "import { Toaster, toast } from 'sonner';",
             "usageExample": "<Toaster />\n<button onClick={() => toast('My first toast')}>Show toast</button>",
