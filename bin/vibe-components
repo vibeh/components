@@ -1,0 +1,92 @@
+#!/usr/bin/env node
+
+const { program } = require('commander');
+const fs = require('fs-extra');
+const path = require('path');
+const { execSync } = require('child_process');
+
+program
+  .version('0.1.0')
+  .description('CLI tool to add Vibe Components and Cursor rules to your project');
+
+program
+  .command('add')
+  .description('Add Vibe Components and Cursor rules to your project')
+  .action(() => {
+    // Check if package.json exists in the current directory
+    if (!fs.existsSync('package.json')) {
+      console.error('Error: package.json not found in the current directory.');
+      console.error('Please run this command in the root of your project.');
+      process.exit(1);
+    }
+
+    try {
+      // Install the actual npm packages instead of our custom implementation
+      console.log('Installing vibe components...');
+      console.log('This will install: vaul, @number-flow/react, and sonner');
+      
+      execSync('npm install --save vaul @number-flow/react sonner', { stdio: 'inherit' });
+
+      // Create .cursor directory if it doesn't exist
+      const cursorDir = path.join(process.cwd(), '.cursor');
+      fs.ensureDirSync(cursorDir);
+
+      // Create rules.json file with the updated content for the actual packages
+      const rulesFile = path.join(cursorDir, 'rules.json');
+      const rulesContent = {
+        "description": "Provides a set of curated React UI components.",
+        "rules": [
+          {
+            "name": "Vaul Bottom Sheet",
+            "description": "A performant and accessible bottom sheet component.",
+            "keywords": ["bottom sheet", "modal", "slide up", "vaul"],
+            "componentName": "Drawer",
+            "importStatement": "import { Drawer } from 'vaul';",
+            "usageExample": "<Drawer.Root>\n  <Drawer.Trigger>\n    <button>Open Drawer</button>\n  </Drawer.Trigger>\n  <Drawer.Portal>\n    <Drawer.Overlay className=\"fixed inset-0 bg-black/40\" />\n    <Drawer.Content className=\"bg-white flex flex-col rounded-t-[10px] h-full mt-24 max-h-[85vh] fixed bottom-0 left-0 right-0\">\n      <div className=\"p-4 rounded-t-[10px] flex-1\">\n        <div className=\"mx-auto w-12 h-1.5 bg-gray-300 rounded-full mb-4\" />\n        <div className=\"max-w-md mx-auto\">\n          <h2>Drawer Content</h2>\n        </div>\n      </div>\n    </Drawer.Content>\n  </Drawer.Portal>\n</Drawer.Root>",
+            "documentationLink": "[https://vaul.emilkowal.ski/](https://vaul.emilkowal.ski/)"
+          },
+          {
+            "name": "NumberFlow Input",
+            "description": "An animated number component for React.",
+            "keywords": ["number input", "numerical input", "numberflow", "animation"],
+            "componentName": "NumberFlow",
+            "importStatement": "import NumberFlow from '@number-flow/react';",
+            "usageExample": "<NumberFlow value={123} />",
+            "documentationLink": "[https://number-flow.barvian.me/](https://number-flow.barvian.me/)"
+          },
+          {
+            "name": "Sonner Toast",
+            "description": "An opinionated toast component for React.",
+            "keywords": ["toast", "notification", "alert", "sonner"],
+            "componentName": "Toaster",
+            "importStatement": "import { Toaster, toast } from 'sonner';",
+            "usageExample": "<Toaster />\n<button onClick={() => toast('My first toast')}>Show toast</button>",
+            "documentationLink": "[https://sonner.emilkowal.ski/](https://sonner.emilkowal.ski/)"
+          }
+        ]
+      };
+
+      fs.writeFileSync(rulesFile, JSON.stringify(rulesContent, null, 2));
+      console.log('\nVibe Components successfully installed!');
+      console.log('Cursor rules for Vibe Components have been added to your project.');
+      console.log('\nYou can now use these components in your project by importing them:');
+      console.log('- import { Drawer } from \'vaul\';');
+      console.log('- import NumberFlow from \'@number-flow/react\';');
+      console.log('- import { Toaster, toast } from \'sonner\';');
+    } catch (error) {
+      console.error('Error:', error.message);
+      process.exit(1);
+    }
+  });
+
+program
+  .command('list')
+  .description('List all available Vibe components')
+  .action(() => {
+    console.log('Available components:');
+    console.log('- Vaul');
+    console.log('- NumberFlow');
+    console.log('- Sonner');
+  });
+
+program.parse(process.argv); 

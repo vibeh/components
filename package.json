@@ -1,0 +1,38 @@
+{
+  "name": "vibe-components-cli",
+  "version": "0.1.0",
+  "description": "CLI tool to add Vibe Components and Cursor rules to your project.",
+  "main": "bin/vibe-components",
+  "bin": {
+    "vibe-components": "./bin/vibe-components"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vibehaus/components.git"
+  },
+  "author": "Erik Nilsson / Vibe Haus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vibehaus/components/issues"
+  },
+  "homepage": "https://github.com/vibehaus/components#readme",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0"
+  },
+  "keywords": [
+    "cli",
+    "components",
+    "react",
+    "cursor",
+    "vaul",
+    "numberflow",
+    "sonner"
+  ],
+  "files": [
+    "bin"
+  ]
+}
